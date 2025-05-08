@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro do Responsável</title>
+</head>
+<body>
+    <h2>Cadastro do Responsável</h2>
+
+    
+        
+    
+    <form method="POST">
+        <label>Nome do responsável:</label><br>
+        <input type="text" name="nome_responsavel" placeholder="Digite seu nome completo" required><br><br>
+
+        <label>CPF do Responsável:</label><br>
+        <input type="text" name="cpf_responsavel" placeholder="Digite seu CPF"
+               oninput="aplicarMascaraCPF(this)" required><br><br>
+
+        <label>Telefone:</label><br>
+        <input type="text" name="telefone" placeholder="(00) 00000-0000"
+               oninput="aplicarMascaraTelefone(this)" required><br><br>
+
+        <label> e-mail:</label><br>
+        <input type = "email" name = "email" placeholder="Digite seu e-mail" required><br><br>
+
+        <label>Endereço:</label><br>
+        <input type="text" name="endereco" placeholder="Digite seu endereço completo" required><br><br>
+
+        <label>Nome da Criança:</label><br>
+        <input type="text" name="nome_crianca" placeholder="Digite o nome da criança" required><br><br>
+
+        <label>Escola:</label><br>
+        <input type="text" name="escola" placeholder="Nome da escola" required><br><br>
+
+        <label>Data de Vencimento:</label><br>
+        <select name="data_vencimento" required>
+            <option value=""> Selecione o dia de vencimento</option>
+            <option value="05">Dia 05 de todo mês</option>
+            <option value="10">Dia 10 de todo mês</option>
+            <option value="20">Dia 20 de todo mês</option>
+            <option value="30">Dia 30 de todo mês</option>
+        </select><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        // Máscara para CPF
+        function aplicarMascaraCPF(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+            input.value = value;
+        }
+
+        // Máscara para telefone
+        function aplicarMascaraTelefone(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+
+            value = value.replace(/(\d{2})(\d)/, '($1) $2');
+            value = value.replace(/(\d{5})(\d)/, '$1-$2');
+
+            input.value = value;
+        }
+    </script>
+</body>
+</html>
